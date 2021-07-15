@@ -1,3 +1,6 @@
+//* Max Profit that we can get if we cut a rod of length L and sell them. 
+//*Since different lengths have different prices.
+
 #include<bits/stdc++.h>
 using namespace std;
 int main(){          //1 2 3 4 5 6 7 8
@@ -23,3 +26,9 @@ int main(){          //1 2 3 4 5 6 7 8
     cout<<dp[n][length]<<endl; 
     return 0;
 }
+//length array -> weight array
+//price array -> value array
+//Length L -> Weight W
+//N elements in length/price array -> N Elements weight/value in array
+//first loop 1 to N
+//second loop 1 to L/W
