@@ -13,9 +13,12 @@ void solve(string s, int start, int end, vector<int> st)
     ans++;
     return;
   }
-
+  if (s[start] == '0')
+    return;
   for (int i = start; i < end; i++)
   {
+    if(s[start]=='0')
+    return;
     string temp = s.substr(start, i - start + 1);
     int tempNumber = stoi(temp);
     if ((st.empty())||tempNumber > st[st.size() - 1])
@@ -30,7 +33,7 @@ int main()
 {
 
   /* Enter your code here. Read input from STDIN. Print output to STDOUT */
-  int n=5, s=32745;
+  int n=4, s=1045;
   
 
   string ex = to_string(s);

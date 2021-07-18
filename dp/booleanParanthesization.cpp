@@ -1,67 +1,39 @@
 class Solution
 {
 public:
-  int memo[202][202][2];
-
-  int func(string &S, int i, int j, bool isTrue)
+  unordered_map<string, int> mp;
+  bool solve(string s1, string s2)
   {
-    if (memo[i][j][isTrue] == -1)
+    int n = s1.length();
+    if (s1 == s2)
+      return true;
+    string key = s1 + " " + s2;
+    cout << key << endl;
+    if (mp.find(key) != mp.end())
+      return mp[key];
+    bool flag = false;
+    for (int i = 1; i < n; i++)
     {
-      int count = 0;
-      int res = INT_MIN;
-
-      if (i > j)
-        res = false;
-      if (i == j)
+      bool unswap = solve(s1.substr(0, i), s2.substr(0, i)) && solve(s1.substr(i, n - i), s2.substr(i, n - i));
+      bool swapped = solve(s1.substr(0, i), s2.substr(n - i, i)) && solve(s1.substr(i, n - i), s2.substr(0, n - i));
+      if (unswap || swapped)
       {
-        if (isTrue == true)
-          res = (S[i] == 'T');
-        else
-          res = (S[i] == 'F');
+        flag = true;
+        break;
       }
-
-      for (int k = i + 1; k < j; k += 2)
-      {
-
-        int lT = func(S, i, k - 1, true);
-        int lF = func(S, i, k - 1, false);
-        int rT = func(S, k + 1, j, true);
-        int rF = func(S, k + 1, j, false);
-        if (S[k] == '|')
-        {
-          if (isTrue == true)
-            count += lT * rF + lF * rT + lT * rT;
-          else
-            count += lF * rF;
-        }
-
-        else if (S[k] == '&')
-        {
-          if (isTrue == true)
-            count += lT * rT;
-          else
-            count += lF * rT + lT * rF + lF * rF;
-        }
-        else if (S[k] == '^')
-        {
-          if (isTrue == true)
-            count += lT * rF + lF * rT;
-          else
-            count += lT * rT + lF * rF;
-        }
-      }
-
-      res = (res == INT_MIN) ? count : res;
-      memo[i][j][isTrue] = res % 1003;
     }
-
-    return memo[i][j][isTrue] % 1003;
+    mp[key] = flag;
+    return flag;
   }
-
-  int countWays(int N, string S)
+  bool isScramble(string s1, string s2)
   {
-    // code here
-    memset(memo, -1, sizeof(memo));
-    return func(S, 0, S.size() - 1, true);
+    if (s1.length() != s2.length())
+      return false;
+    bool ans = solve(s1, s2);
+    // for(auto i :mp){
+    //     cout<<i.first<<" - ";
+    //     cout<<i.second<<endl;
+    // }
+    return ans;
   }
 };

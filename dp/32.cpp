@@ -1,6 +1,7 @@
 class Solution
 {
 public:
+  //dp[i] = the longest valid paranthesis ending at i
   int longestValidParentheses(string s)
   {
     int n = s.size();
@@ -21,6 +22,7 @@ public:
             dp[i] += dp[startIndex - 1];
         }
       }
+      cout << dp[i] << endl;
       res = max(res, dp[i]);
     }
     return res;
