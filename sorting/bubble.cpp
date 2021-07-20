@@ -1,16 +1,19 @@
-void bubbleSort(int arr[], int n)
-{
-  // Your code here
+#include <bits/stdc++.h>
+typedef unsigned long long int ll;
+using namespace std;
+
+int main(){
+
+  int arr[10] = {2,11,4,1,7,9,-5,-10,72,0};
+
   int i, j;
   //Traversing over the array.
-  for (i = 0; i < n - 1; i++)
+  for (i = 0; i < 9; i++)
   {
-    //Last i elements are already in place so we do not include them.
-    for (j = 0; j < n - i - 1; j++)
-
-      //Swapping, if the element at current index is greater
-      // than the next element.
-      if (arr[j] > arr[j + 1])
-        swap(&arr[j], &arr[j + 1]);
+    for (j = 0; j < 9 - i - 1; j++)
+      if(arr[j] > arr[j + 1])
+        swap(arr[j], arr[j + 1]);
   }
+
+  return 0;
 }
