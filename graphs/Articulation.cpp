@@ -24,11 +24,11 @@ void DFS(int u, vector<int> &disc, vector<int> &low, vector<int> &parent, vector
       if (parent[u] == -1 and children > 1) //Case-1: U is root
         articulation_Point[u] = true;
 
-      if (parent[u] != -1 and low[v] >= disc[u]) //Case-2: Atleast 1 component will get separated
+      if (parent[u] != -1 and low[v] >= disc[u]) //Case-2: Atleast 1 component will get separated (No back edge found)
         articulation_Point[u] = true;
     }
     else if (v != parent[u]) //Ignore child to parent edge
-      low[u] = min(low[u], disc[v]);
+      low[u] = min(low[u], disc[v]); //Back Edge excluding parent
   }
 }
 
