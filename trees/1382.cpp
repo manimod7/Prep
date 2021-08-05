@@ -19,33 +19,46 @@ int main(){
 
 
 // * Balancing a Binary Search Tree
-class Solution
-{
-  vector<TreeNode *> nodes;
-  void util(TreeNode *root)
-  {
-    if (!root)
-      return;
-    if (root->left)
-      util(root->left);
-    nodes.push_back(root);
-    if (root->right)
-      util(root->right);
-  }
-  TreeNode *construct(int l, int r)
-  {
-    if (l > r)
-      return NULL;
-    int mid = l + (r - l) / 2;
-    TreeNode *node = nodes[mid];
-    node->left = construct(l, mid - 1), node->right = construct(mid + 1, r);
-    return node;
-  }
 
-public:
-  TreeNode *balanceBST(TreeNode *root)
+  /**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+  class Solution
   {
-    util(root);
-    return construct(0, nodes.size() - 1);
-  }
-};
+  public:
+    vector<TreeNode *> v;
+    void inorder(TreeNode *root)
+    {
+      if (!root)
+        return;
+      inorder(root->left);
+      v.push_back(root);
+      inorder(root->right);
+    }
+    TreeNode *constructTree(int start, int end)
+    {
+      if (start > end)
+        return NULL;
+      int mid = (start + end) / 2;
+      TreeNode *root = v[mid];
+      root->left = constructTree(start, mid - 1);
+      root->right = constructTree(mid + 1, end);
+      return root;
+    }
+    TreeNode *balanceBST(TreeNode *root)
+    {
+      if (!root)
+        return NULL;
+      inorder(root);
+      int n = v.size();
+      return constructTree(0, n - 1);
+    }
+  };
