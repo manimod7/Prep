@@ -27,8 +27,9 @@ public:
 int main(void)
 {
   d *derived = new d();
-  cout<<"Hello\n";
+  //cout<<"Hello\n";
   b *bptr = derived;
   delete bptr;
   return 0;
 }
+//Derived class const base ->cons derive

@@ -17,5 +17,7 @@ public:
 int main()
 {
   // invoking a static member function
+  GfG *a =new GfG();
+  a->printMsg();
   GfG::printMsg();
 }

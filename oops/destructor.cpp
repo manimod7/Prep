@@ -37,3 +37,11 @@ int main(void)
   getchar();
   return 0;
 }
+//1 Base COnstructor
+//2 Derive const
+//3. Delete derive
+//4. Delete base
+//1 2 3 4
+//2 1 3 4
+//2 1 4 3
+//1 2 4 3

@@ -15,10 +15,10 @@ public:
     area = 0;
   }
 
-  // Constructor with two parameters
-  construct(int a, int b)
+ 
   {
-    area = a * b;
+    area = a * b; // Constructor with two parameters
+  construct(int a, int b)
   }
 
   void disp()
