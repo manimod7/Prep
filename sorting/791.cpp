@@ -1,11 +1,26 @@
-class Solution
-{
-public:
-  string customSortString(string order, string str)
+#include <bits/stdc++.h>
+typedef unsigned long long int ll;
+using namespace std;
+string order1;
+bool cmp(char a, char b)
   {
-
-    sort(str.begin(), str.end(), [order](char &a, char &b)
-         { return order.find(a) < order.find(b); });
-    return str;
+    return order1.find(a) < order1.find(b); 
   }
-};
+string customSortString(string order, string str)
+{
+  sort(str.begin(), str.end(), cmp);
+  return str;
+}
+int main(){
+
+string  order ="dabc";
+order1=order;
+string toSort = "abcabcabd";
+string ans = customSortString(order,toSort);
+cout<<ans;
+
+
+  return 0;
+}
+
+
