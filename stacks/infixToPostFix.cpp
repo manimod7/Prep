@@ -77,7 +77,7 @@ void infixToPostfix(string s)
 //Driver program to test above functions
 int main()
 {
-  string exp = "a+b*(c^d-e)^(f+g*h)-i";
+  string exp = "1+2*3/4";
   infixToPostfix(exp);
   return 0;
 }
