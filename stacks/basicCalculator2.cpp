@@ -65,9 +65,12 @@ int calculate(string s)
     else
       st2.push(op1 / op2);
   }
+  return st2.top();
+}
 
   int main()
   {
-
+    string s ="1+2*4+10/2-3*4";
+    cout<<calculate(s)<<endl;
     return 0;
   }
